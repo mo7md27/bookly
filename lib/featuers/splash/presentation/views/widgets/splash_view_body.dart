@@ -1,9 +1,7 @@
-import 'package:bookly/constants.dart';
+import 'package:bookly/core/utils/app_router.dart';
 import 'package:bookly/core/utils/assets.dart';
-import 'package:bookly/featuers/home/presentation/views/home_view.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/get_core.dart';
-import 'package:get/get_navigation/get_navigation.dart';
+import 'package:go_router/go_router.dart';
 
 import 'sliding_text.dart';
 
@@ -64,9 +62,10 @@ class _SplashViewBodyState extends State<SplashViewBody> with SingleTickerProvid
   void NavigateToHome() {
     Future.delayed(Duration(seconds: 2),(){
     
-     Get.to(()=> HomeView(),
-     transition: Transition.fade,
-     duration:kTranstionDuration );
+    //  Get.to(()=> HomeView(),
+    //  transition: Transition.fade,
+    //  duration:kTranstionDuration );
+    GoRouter.of(context).push(AppRouter.kHomeView);
     });
   }
 }
