@@ -1,4 +1,5 @@
 import 'package:bookly/core/utils/styles.dart';
+import 'package:bookly/featuers/home/presentation/views/widgets/book_tating.dart';
 import 'package:bookly/featuers/home/presentation/views/widgets/custom_book_details_appbar.dart';
 import 'package:bookly/featuers/home/presentation/views/widgets/custom_list_view_item.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +28,10 @@ class BookDetailsViewBody extends StatelessWidget {
             child: Text("Rudyard Kipling",
             style: Styles.textStyle18.copyWith(fontStyle: FontStyle.italic,
             fontWeight: FontWeight.w500),),
+          ),
+          SizedBox(height: 16),
+          BookRating(
+            mainAxisAlignment: MainAxisAlignment.center,
           ),
           
           
