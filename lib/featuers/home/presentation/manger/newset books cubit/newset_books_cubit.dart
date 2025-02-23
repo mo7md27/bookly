@@ -1,6 +1,6 @@
-import 'package:bloc/bloc.dart';
 import 'package:bookly/featuers/home/data/repos/home_repo.dart';
 import 'package:bookly/featuers/home/presentation/manger/newset%20books%20cubit/newset_books_state.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class NewsetBooksCubit extends Cubit<NewsetBooksState>{
 
