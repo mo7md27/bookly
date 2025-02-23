@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/utils/assets.dart';
 
 class CustomListViewItem extends StatelessWidget {
-  const CustomListViewItem({super.key});
+  const CustomListViewItem({super.key, required this.imageUrl});
 
+final String imageUrl;
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
@@ -16,7 +16,8 @@ class CustomListViewItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
             color: Colors.white,
             image: DecorationImage(
-                fit: BoxFit.fill, image: AssetImage(AssetsData.test))),
+                fit: BoxFit.fill, image:
+                 NetworkImage(imageUrl))),
       ),
     );
   }

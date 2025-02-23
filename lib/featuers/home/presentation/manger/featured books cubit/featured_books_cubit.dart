@@ -12,7 +12,7 @@ final HomeRepo homeRepo;
 
 Future<void>fetchFeautredBooks()async{
   emit(FeaturedBooksLoading());
- var result= await homeRepo.fetchFeautredBooks();
+ var result= await homeRepo.fetchFeaturedBooks();
 
 
  result.fold(

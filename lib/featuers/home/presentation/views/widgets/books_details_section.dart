@@ -15,7 +15,7 @@ class BookDetailsSection extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: widthf * .2),
-          child: CustomListViewItem(),
+          child: CustomListViewItem(imageUrl: 'https://sl.bing.net/fSUoUinlObQ',),
         ),
         SizedBox(
           height: 43,
