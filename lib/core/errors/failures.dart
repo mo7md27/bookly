@@ -1,31 +1,27 @@
 import 'package:dio/dio.dart';
 
 abstract class Failure {
-
   final String errMessage;
 
   Failure(this.errMessage);
 }
 
-
-class ServerFailuer extends Failure{
+class ServerFailuer extends Failure {
   ServerFailuer(super.errMessage);
 
-
-  factory ServerFailuer.fromDioError(DioError dioError){
-    switch(dioError.type){
-      
+  factory ServerFailuer.fromDioError(DioException dioError) {
+    switch (dioError.type) {
       case DioExceptionType.connectionTimeout:
-         return ServerFailuer('Conniction timeout with ApiServer');
+        return ServerFailuer('Conniction timeout with ApiServer');
       case DioExceptionType.sendTimeout:
         return ServerFailuer('Sind timeout with ApiServer');
       case DioExceptionType.receiveTimeout:
-         return ServerFailuer('Receive timeout with ApiServer');
+        return ServerFailuer('Receive timeout with ApiServer');
       case DioExceptionType.badCertificate:
-         return ServerFailuer('Internal Server Error');
+        return ServerFailuer('Internal Server Error');
 
       case DioExceptionType.badResponse:
-      return ServerFailuer.fromResponse(
+        return ServerFailuer.fromResponse(
           dioError.response!.statusCode!,
           dioError.response!.data,
         );
@@ -39,14 +35,10 @@ class ServerFailuer extends Failure{
           return ServerFailuer('No Internet Connection');
         }
         return ServerFailuer('Unexpected Error, Please try later!');
-      default:
-        return ServerFailuer('Opps There was an Error, PLease try again');
     }
   }
 
-
-
-factory ServerFailuer.fromResponse(int statusCode, dynamic response) {
+  factory ServerFailuer.fromResponse(int statusCode, dynamic response) {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
       return ServerFailuer(response['error']['message']);
     } else if (statusCode == 404) {
@@ -58,4 +50,3 @@ factory ServerFailuer.fromResponse(int statusCode, dynamic response) {
     }
   }
 }
-
