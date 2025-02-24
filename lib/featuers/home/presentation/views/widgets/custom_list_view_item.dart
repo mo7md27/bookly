@@ -14,7 +14,6 @@ final String imageUrl;
         width: MediaQuery.of(context).size.width * .3,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            color: Colors.white,
             image: DecorationImage(
                 fit: BoxFit.fill, image:
                  NetworkImage(imageUrl))),
