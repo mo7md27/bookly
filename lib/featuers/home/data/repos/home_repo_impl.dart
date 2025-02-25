@@ -26,6 +26,8 @@ class HomeRepoImpl implements HomeRepo {
     return right(books);
 
 } catch (e) {
+
+  
   if(e is DioError){
     return left(ServerFailuer.fromDioError(e));
   }
