@@ -1,13 +1,17 @@
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/app_router.dart';
-import 'package:bookly/core/utils/assets.dart';
 import 'package:bookly/core/utils/styles.dart';
+import 'package:bookly/featuers/home/data/models/book_models/book_model.dart';
 import 'package:bookly/featuers/home/presentation/views/widgets/book_tating.dart';
+import 'package:bookly/featuers/home/presentation/views/widgets/custom_list_view_item.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class BestSellerListViewItem extends StatelessWidget {
-  const BestSellerListViewItem({super.key});
+  const BestSellerListViewItem({super.key, required this.bookModel});
+  
+  
+  final BookModel bookModel;
 
   @override
   Widget build(BuildContext context) {
@@ -19,21 +23,13 @@ class BestSellerListViewItem extends StatelessWidget {
         height: 125,
         child: Row(
           children: [
-            AspectRatio(
-              aspectRatio: 2.5 / 4,
-              child: Container(
-                height: MediaQuery.of(context).size.height * .25,
-                width: MediaQuery.of(context).size.width * .3,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: Colors.white,
-                    image: DecorationImage(
-                        fit: BoxFit.fill, image: AssetImage(AssetsData.test))),
-              ),
-            ),
+            CustomListViewItem(
+                imageUrl: bookModel.volumeInfo.imageLinks?.thumbnail??''),
+           
             SizedBox(
               width: 30,
             ),
+
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,7 +37,7 @@ class BestSellerListViewItem extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * .5,
                     child: Text(
-                      "Harry Potter and Goblet of Fire",
+                      bookModel.volumeInfo.title!,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: Styles.textStyle20
@@ -52,18 +48,24 @@ class BestSellerListViewItem extends StatelessWidget {
                     height: 3,
                   ),
                   Text(
-                    'J.K Rowling',
+                    bookModel.volumeInfo.authors![0],
                     style: Styles.textStyle14,
+                  ),
+                   SizedBox(
+                    height: 3,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '19.99',
+                        'Free',
                         style: Styles.textStyle20
                             .copyWith(fontWeight: FontWeight.bold),
                       ),
-                      BookRating()
+                      BookRating(
+                       rating:bookModel.volumeInfo.averageRating?.round() ?? 0,
+                        count: bookModel.volumeInfo.ratingsCount??0,
+                      )
                     ],
                   ),
                 ],
